@@ -1,0 +1,32 @@
+<form>
+  <label>Year of race</label>
+  <br />
+  <input type="text" name="year" [(ngModel)]="year" />
+  <button class="btn btn-primary" type="submit">Search</button>
+</form>
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Season</th>
+        <th scope="col">Round</th>
+        <th scope="col">Url</th>
+        <th scope="col">Race Name</th>
+        <th scope="col">Circuit Name</th>
+        <th scope="col">Location</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let race of races">
+        <th scope="row">{{ race.season }}</th>
+        <td>{{ race.round }}</td>
+        <td>{{ race.url }}</td>
+        <td>{{ race.raceName }}</td>
+        <td>{{ race.Circuit.circuitName }}</td>
+        <td>{{ race.Circuit.Location.country }}</td>
+        <td>{{ race.date }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

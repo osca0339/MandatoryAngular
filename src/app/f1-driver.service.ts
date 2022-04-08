@@ -29,6 +29,26 @@ export class F1DriverService {
         })
       );
   }
+
+  getDriver(driverId: string | null): Observable<IDriver[]> {
+    return this.httpClient
+      .get<IDriverData>(`http://ergast.com/api/f1/drivers/${driverId}.json`)
+      .pipe(
+        map((drivers) => {
+          return drivers.MRData.DriverTable.Drivers.map((driver) => {
+            return {
+              driverId: driver.driverId,
+              permanentNumber: driver.permanentNumber,
+              code: driver.code,
+              givenName: driver.givenName,
+              familyName: driver.familyName,
+              dateOfBirth: driver.dateOfBirth,
+              nationality: driver.nationality,
+            } as IDriver;
+          });
+        })
+      );
+  }
 }
 
 interface IDriverData {
